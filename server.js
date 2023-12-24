@@ -3,9 +3,9 @@ require('./models/db');
 const UsersRouter = require("./routes/usersDb");
 const SecurityRouter = require("./routes/security");
 
-const eventRoutes = require('./routes/eventRoutes');
-const participationRoutes = require('./routes/participationRoutes');
-const commentRoutes = require('./routes/commentRoutes');
+const eventRouter = require('./routes/eventRouter');
+const participationRouter = require('./routes/participationRouter');
+const commentRouter = require('./routes/commentRouter');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -36,9 +36,9 @@ app.use(parseBody);
 
 app.use(UsersRouter);
 app.use(SecurityRouter);
-app.use(eventRoutes);
-app.use(participationRoutes);
-app.use(commentRoutes);
+app.use(eventRouter);
+app.use(participationRouter);
+app.use(commentRouter);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
