@@ -3,38 +3,42 @@ require('./models/db');
 const UsersRouter = require("./routes/usersDb");
 const SecurityRouter = require("./routes/security");
 
+const eventRoutes = require('./routes/eventRoutes');
+const participationRoutes = require('./routes/participationRoutes');
+const commentRoutes = require('./routes/commentRoutes');
+const bodyParser = require('body-parser');
+
 const app = express();
 
 app.use(express.json());
-// <=>
-// function parseBody(req, res, next) {
-//  const bufferList = [];
-//  req.on("data", (chunk) => {
-//    bufferList.push(chunk);
-//  });
 
-//  req.on("end", () => {
-//    const body = JSON.parse(Buffer.concat(bufferList).toString//());
 
-//    req.body = body;
-//    next();
-//  });
-// }
 
-app.get("/", (req, res, next) => {
-  res.send("Hello world");
-});
+function parseBody(req, res, next) {
+  const bufferList = [];
+  req.on('data', (chunk) => {
+    bufferList.push(chunk);
+  });
 
-app.post("/", (req, res, next) => {
-  res.send("Hello world from POST : " + JSON.stringify(req.body));
-});
+  req.on('end', () => {
+    try {
+      const body = JSON.parse(Buffer.concat(bufferList).toString());
 
-app.put("/", (req, res, next) => {
-  res.send("Hello world from PUT : " + JSON.stringify(req.body));
-});
+      req.body = body;
+      next();
+    } catch (error) {
+      res.status(400).json({ message: 'Invalid JSON' });
+    }
+  });
+}
+app.use(parseBody);
+
 
 app.use(UsersRouter);
 app.use(SecurityRouter);
+app.use(eventRoutes);
+app.use(participationRoutes);
+app.use(commentRoutes);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
