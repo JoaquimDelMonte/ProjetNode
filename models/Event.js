@@ -1,9 +1,10 @@
-const { DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const connection = require("./db");
 const User = require("./User");
 
-const Event = connection.define(
-  "Event",
+class Event extends Model {}
+
+Event.init(
   {
     title: {
       type: DataTypes.STRING,
@@ -19,11 +20,12 @@ const Event = connection.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+  },
+  {
+    sequelize: connection,
   }
 );
 
 Event.belongsTo(User, { as: "creator", foreignKey: "creatorId" });
-Event.hasMany(Participation);
-Event.hasMany(Comment);
 
 module.exports = Event;
