@@ -1,0 +1,6 @@
+code pour créer la bdd sql
+CREATE USER 'Node'@'localhost' IDENTIFIED BY 'Pass';
+CREATE DATABASE nodejs_projet;
+GRANT ALL PRIVILEGES ON nodejs_projet.* TO 'Node'@'localhost';
+FLUSH PRIVILEGES;
+
