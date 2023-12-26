@@ -38,6 +38,7 @@ app.use(SecurityRouter);
 app.use(eventRouter);
 app.use(participationRouter);
 app.use(commentRouter);
+app.use(jwtmiddleware);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
