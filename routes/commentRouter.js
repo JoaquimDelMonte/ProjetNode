@@ -53,3 +53,5 @@ router.delete("/comments/:id", checkAuth, async (req, res, next) => {
   });
   res.sendStatus(result === 0 ? 404 : 204);
 });
+
+module.exports = router;
