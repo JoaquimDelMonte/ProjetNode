@@ -12,8 +12,6 @@ const app = express();
 
 app.use(express.json());
 
-
-
 function parseBody(req, res, next) {
   const bufferList = [];
   req.on('data', (chunk) => {
