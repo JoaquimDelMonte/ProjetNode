@@ -27,3 +27,17 @@ router.get("/events/:id", async (req, res, next) => {
                res.sendStatus(404);
              }
 });
+
+router.patch("/events/:id", checkAuth, async (req, res, next) => {
+           try {
+                      const result = await Event.update(req.body, {
+                                 where: {id: parseInt(req.params.id),
+           }});
+           if (result[0] === 0) {
+                 res.sendStatus(404);
+           }else{
+                      res.json(await Event.findByPk(parseInt(req.params.id)));}
+           }catch(err){
+                      res.status(422).json({ error: err.message });
+           }
+});
