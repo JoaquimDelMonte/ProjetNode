@@ -18,3 +18,12 @@ router.post("/comments", checkAuth, async (req, res, next) => {
     res.status(422).json({ error: err.message });
   }
 });
+
+router.get("/comments/:id", async (req, res, next) => {
+  const comment = await Comment.findByPk(parseInt(req.params.id));
+  if (comment) {
+    res.json(comment);
+  } else {
+    res.sendStatus(404);
+  }
+});
