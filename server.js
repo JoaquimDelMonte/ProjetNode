@@ -7,7 +7,7 @@ const eventRouter = require('./routes/eventRouter');
 const participationRouter = require('./routes/participationRouter');
 const commentRouter = require('./routes/commentRouter');
 const bodyParser = require('body-parser');
-const JWTmiddleware = require('./middlewares/checkAuth');
+const checkAuth = require('./middlewares/checkAuth');
 
 const app = express();
 
@@ -38,7 +38,7 @@ app.use(SecurityRouter);
 app.use(eventRouter);
 app.use(participationRouter);
 app.use(commentRouter);
-app.use(JWTmiddleware);
+app.use(checkAuth);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
