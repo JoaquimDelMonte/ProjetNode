@@ -7,6 +7,7 @@ const eventRouter = require('./routes/eventRouter');
 const participationRouter = require('./routes/participationRouter');
 const commentRouter = require('./routes/commentRouter');
 const bodyParser = require('body-parser');
+const jwtmiddleware = require('./middlewares/checkAuth');
 
 const app = express();
 
