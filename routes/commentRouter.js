@@ -44,3 +44,12 @@ router.patch("/comments/:id", checkAuth, async (req, res, next) => {
     res.status(422).json({ error: err.message });
   }
 });
+
+router.delete("/comments/:id", checkAuth, async (req, res, next) => {
+  const result = await Comment.destroy({
+    where: {
+      id: parseInt(req.params.id),
+    },
+  });
+  res.sendStatus(result === 0 ? 404 : 204);
+});
