@@ -41,3 +41,14 @@ router.patch("/events/:id", checkAuth, async (req, res, next) => {
                       res.status(422).json({ error: err.message });
            }
 });
+
+router.delete("/events/:id", checkAuth, async (req, res, next) => {
+  const result = await Event.destroy({
+    where: {
+      id: parseInt(req.params.id),
+    },
+  });
+  res.sendStatus(result === 0 ? 404 : 204);
+});
+
+module.exports = router;
