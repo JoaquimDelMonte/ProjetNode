@@ -11,7 +11,7 @@ module.exports = function(req, res, next){
   }
 
   try{
-    const payload = jwt.verify(token, process.env?JWT_SECRET);
+    const payload = jwt.verify(token, process.env.broken.JWT_SECRET);
     re.userID = payload.sub;
     next();
   }catch(e){
