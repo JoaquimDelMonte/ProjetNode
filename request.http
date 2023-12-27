@@ -1,1 +1,84 @@
+# Création d'un nouvel événement
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "title": "Nouvel événement",
+  "description": "Description de l'événement",
+  "date": "2023-01-01",
+  "location": "Lieu de l'événement",
+  "maxParticipants": 100
+}
+
+# Récupération de tous les événements
+GET http://localhost:3000/api/events
+
+# Récupération d'un événement spécifique (remplacez :id par l'ID réel)
+GET http://localhost:3000/api/events/:id
+
+# Mise à jour d'un événement spécifique (remplacez :id par l'ID réel)
+PATCH http://localhost:3000/api/events/:id
+Content-Type: application/json
+
+{
+  "title": "Événement mis à jour"
+}
+
+# Suppression d'un événement spécifique (remplacez :id par l'ID réel)
+DELETE http://localhost:3000/api/events/:id
+
+# Création d'une nouvelle participation
+POST http://localhost:3000/api/participations
+Content-Type: application/json
+
+{
+  "status": "confirmed",
+  "userId": 1, 
+  "eventId": 1  
+}
+
+# Récupération de toutes les participations
+GET http://localhost:3000/api/participations
+
+# Récupération d'une participation spécifique (remplacez :id par l'ID réel)
+GET http://localhost:3000/api/participations/:id
+
+# Mise à jour d'une participation spécifique (remplacez :id par l'ID réel)
+PATCH http://localhost:3000/api/participations/:id
+Content-Type: application/json
+
+{
+  "status": "cancelled"
+}
+
+# Suppression d'une participation spécifique (remplacez :id par l'ID réel)
+DELETE http://localhost:3000/api/participations/:id
+
+# Création d'un nouveau commentaire
+POST http://localhost:3000/api/comments
+Content-Type: application/json
+
+{
+  "text": "Nouveau commentaire",
+  "date": "2023-01-01",
+  "userId": 1,  
+  "eventId": 1 
+}
+
+# Récupération de tous les commentaires
+GET http://localhost:3000/api/comments
+
+# Récupération d'un commentaire spécifique (remplacez :id par l'ID réel)
+GET http://localhost:3000/api/comments/:id
+
+# Mise à jour d'un commentaire spécifique (remplacez :id par l'ID réel)
+PATCH http://localhost:3000/api/comments/:id
+Content-Type: application/json
+
+{
+  "text": "Commentaire mis à jour"
+}
+
+# Suppression d'un commentaire spécifique (remplacez :id par l'ID réel)
+DELETE http://localhost:3000/api/comments/:id
 
